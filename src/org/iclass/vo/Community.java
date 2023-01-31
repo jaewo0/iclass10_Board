@@ -14,7 +14,7 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Community {
-	private long idx;
+	private int idx;
 	private String writer;
 	private String title;
 	private String content;

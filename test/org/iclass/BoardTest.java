@@ -2,6 +2,8 @@ package org.iclass;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.iclass.dao.CommunityCommentsDao;
 import org.iclass.dao.CommunityDao;
 import org.iclass.vo.Community;
@@ -32,20 +34,21 @@ class BoardTest {
 //		assertEquals(vo.getIdx(), 10);
 //	}
 //
-	@DisplayName("update 테스트")
+//	@DisplayName("update 테스트")
+//	@Test
+//	void update() {
+//		int result= communityDao.update(Community.builder()
+//				.idx(20)
+//				.writer("크크크")
+//				.title("수정 테스트")
+//				.content("대충콘텐트")
+//				.build());
+//		assertEquals(result, 1);
+//	}
+	@DisplayName("select 테스트")
 	@Test
-	void update() {
-		Community vo = Community.builder()
-				.writer("크크크")
-				.title("수정 테스트")
-				.content("대충콘텐트")
-				.idx(20)
-				.build();
-		communityDao.update(vo);
-		
+	void selectOne() {
+		Community vo = Community.builder().idx(20).build();
 	}
 
-
-
 }
-

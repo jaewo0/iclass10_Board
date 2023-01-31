@@ -60,9 +60,7 @@ INSERT INTO communityComments (idx,mref,writer,content)
 VALUES (comment_idx_seq.nextval,9,'김땡땡','하이!!!하이~~');
 
 SELECT * FROM COMMUNITY ;
-
-
-
+SELECT * FROM COMMUNITYCOMMENTS c ;
 
 
 

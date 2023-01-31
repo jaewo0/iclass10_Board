@@ -11,18 +11,36 @@
  -->
 	<insert id="insert" parameterType="org.iclass.vo.CommunityComments">
 		INSERT INTO communityComments
-		VALUES (#{idx},#{mref},#{writer},#{content},#{createdAt},#{ip},#{heart})
+		VALUES (comment_idx_seq.nextval,
+				)
 	</insert>
-	<delete id="delete" parameterType="org.iclass.vo.CommunityComments">
+	<delete id="delete" parameterType="int">
 		DELETE FROM CommunityComments
 		WHERE idx = #{idx}
 	</delete>
 	<update id="update" parameterType="org.iclass.vo.CommunityComments">
 		UPDATE community
-		SET = #{writer},{content}
+		SET writer=#{writer}, content=#{content}
 		where idx = #{idx}
 	</update>
 	
+	<select id="selectAll" parameterType="org.iclass.vo.CommunityComments">
+		SELECT count(*) FROM community;
+	</select>
+	
+	<select id="commentCount" parameterType="int" resultType="org.iclass.vo.CommunityComments">
+		SELECT * FROM community where mref=#{mref};
+	</select>
+	
+	<update id="setCommentCount" parameterType="org.iclass.vo.CommunityComments">
+		UPDATE community set commentcount = (
+		SELECT count(*) FROM communityComments c where mref=#{mref})
+		WHERE idx=#{idx}
+	</update>
+	<update id="setReadCount" parameterType="int">
+		UPDATE community SET READCOUNT = READCOUNT +1
+		WHERE idx = #{idx}
+	</update>
 </mapper>  
   
   

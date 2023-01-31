@@ -21,7 +21,7 @@
 			SELECT community_idx_seq.currval 
 			FROM dual
 		</selectKey>	
-		<!-- mysql은 autoincrement 속성 설정하므로
+		<!-- mysql은 autoincrement 속성 설정하므로 useGeneratedKeys="true"
 	<insert id="insert" parameterType="org.iclass.vo.Community" 
  		keyProperty="idx" keyColumn="idx" useGeneratedKeys="true" >		
 		 -->
@@ -29,7 +29,7 @@
  	
 	<update id="update" parameterType="org.iclass.vo.Community">
 		UPDATE community
-		SET = #{writer},#{title},{content}
+		SET writer=#{writer}, title=#{title}, content=#{content}
 		where idx = #{idx}
 	</update>
 	

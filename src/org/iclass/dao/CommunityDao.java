@@ -14,11 +14,11 @@ public class CommunityDao {
 		return dao;
 	}
 	
-	public List<Community> select(int idx){
+	public Community select(int idx){
 		SqlSession mapper = SqlSessionBean.getSession();
-		List<Community> list = mapper.selectList("community.select",idx);
+		Community vo = mapper.selectOne("community.select",idx);
 		mapper.close();
-		return list;
+		return vo;
 	}
 	
 	public long insert(Community vo) {
