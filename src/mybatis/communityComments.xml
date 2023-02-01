@@ -9,38 +9,24 @@
 1. 댓글 글 쓰기 : insert
 2. 		글 삭제 : delete
  -->
-	<insert id="insert" parameterType="org.iclass.vo.CommunityComments">
-		INSERT INTO communityComments
-		VALUES (comment_idx_seq.nextval,
-				)
-	</insert>
-	<delete id="delete" parameterType="int">
-		DELETE FROM CommunityComments
-		WHERE idx = #{idx}
-	</delete>
-	<update id="update" parameterType="org.iclass.vo.CommunityComments">
-		UPDATE community
-		SET writer=#{writer}, content=#{content}
-		where idx = #{idx}
-	</update>
-	
-	<select id="selectAll" parameterType="org.iclass.vo.CommunityComments">
-		SELECT count(*) FROM community;
-	</select>
-	
-	<select id="commentCount" parameterType="int" resultType="org.iclass.vo.CommunityComments">
-		SELECT * FROM community where mref=#{mref};
-	</select>
-	
-	<update id="setCommentCount" parameterType="org.iclass.vo.CommunityComments">
-		UPDATE community set commentcount = (
-		SELECT count(*) FROM communityComments c where mref=#{mref})
-		WHERE idx=#{idx}
-	</update>
-	<update id="setReadCount" parameterType="int">
-		UPDATE community SET READCOUNT = READCOUNT +1
-		WHERE idx = #{idx}
-	</update>
+ 	<insert id="insert" parameterType="org.iclass.vo.CommunityComments">
+ 		INSERT INTO communityComments
+ 			(idx,mref,writer,content) 
+		VALUES 
+			(comment_idx_seq.nextval,#{mref},#{writer},#{content})
+ 	</insert>  
+ 	
+ 	<delete id="delete" parameterType="int">
+ 		DELETE FROM 
+ 			communityComments 
+ 		WHERE 
+ 			idx=#{idx}
+ 	</delete>
+ 	
+ 	 	<select id="maxOf" resultType="int">
+ 		SELECT max(idx) FROM communityComments 
+ 	</select>
+ 	
 </mapper>  
   
   

@@ -13,26 +13,26 @@ public class CommunityCommentsDao {
 	}
 	
 	public int insert(CommunityComments vo) {
-		SqlSession mapper = SqlSessionBean.getSession();
-		int result = mapper.insert("insert",vo);
-		mapper.commit();
-		mapper.close();
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int idx = mapperSession.insert("communityComments.insert",vo);
+		mapperSession.commit();
+		mapperSession.close();
+		return idx;
+	}
+	
+	public int delete(int idx) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		int result = mapperSession.delete("communityComments.delete",idx);
+		mapperSession.commit();
+		mapperSession.close();
 		return result;
 	}
 	
-	public int delete(CommunityComments vo) {
-		SqlSession mapper = SqlSessionBean.getSession();
-		int result = mapper.delete("delete",vo);
-		mapper.commit();
-		mapper.close();
-		return result;
-	}
-	
-	public int update(CommunityComments vo) {
-		SqlSession mapper = SqlSessionBean.getSession();
-		int result = mapper.update("update",vo);
-		mapper.commit();
-		mapper.close();
+	//idx 최대값 구하기
+	public int maxOf() {
+		SqlSession session = SqlSessionBean.getSession();
+		int result = session.selectOne("communityComments.maxOf");
+		session.close();
 		return result;
 	}
 	

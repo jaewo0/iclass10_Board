@@ -14,41 +14,24 @@ class BoardTest {
 	CommunityDao communityDao = CommunityDao.getInstance();
 	CommunityCommentsDao commentsDao = CommunityCommentsDao.getInstance();
 	
-//	@DisplayName("메인 글쓰기 insert")
-//	@Test
-//	void insertMain() {
-//		Community vo = Community.builder()
-//				.writer("트트트")
-//				.title("자바정석 후기")
-//				.content("자바 공부하기 자바 정석으로")
-//				.build();
-//		communityDao.insert(vo);
-//		assertEquals(vo.getIdx(), 11);    //기대값 : 생성된 시퀀스값
-//		
-//	}
-//	@DisplayName("delete 테스트")
-//	@Test
-//	void delete() {
-//		Community vo = new Community();
-//		communityDao.delete(14);
-//		assertEquals(vo.getIdx(), 10);
-//	}
-//
-//	@DisplayName("update 테스트")
-//	@Test
-//	void update() {
-//		int result= communityDao.update(Community.builder()
-//				.idx(20)
-//				.writer("크크크")
-//				.title("수정 테스트")
-//				.content("대충콘텐트")
-//				.build());
-//		assertEquals(result, 1);
-//	}
-	@DisplayName("select 테스트")
-	@Test
-	void selectOne() {
-		Community vo = Community.builder().idx(20).build();
+	@DisplayName("메인글 쓰기 insert 에 저장된 idx 컬럼값은 max+1과 같아야 한다.")
+	@Test				
+	void insertMain() {
+		Community vo = Community.builder()
+				.writer("트트트")
+				.title("자바정석 후기")
+				.content("자바 공부하기 자바 정석으로")
+				.build();
+		int result = communityDao.maxOf();
+		communityDao.insert(vo);
+		assertEquals(vo.getIdx(), result+1);    //기대값 : 생성된 시퀀스값
 	}
-
+	
+	@DisplayName("메인글 목록 : list 크기와 count 로 구한 값이 같아야 한다.")
+	@Test
+	void mainList() {
+		List<Community> list =	communityDao.list();
+		int count = communityDao.count();
+		assertEquals(list.size(), count);    //기대값 : 생성된 시퀀스값
+	}
 }
