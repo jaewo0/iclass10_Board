@@ -21,9 +21,17 @@
 			<table>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="title" size="50"
-						value="[수정]${vo.title }" readonly> <!-- readonly : 입력불가 -->
-					</td>
+					<td><c:choose>
+							<c:when test="${fn:contains(vo.title,'[수정]') }">
+								<input type="text" name="title" size="50" value="${vo.title }"
+									readonly>
+								<!-- readonly : 입력불가 -->
+							</c:when>
+							<c:otherwise>
+								<input type="text" name="title" size="50"
+									value="[수정]${vo.title }" readonly>
+							</c:otherwise>
+						</c:choose></td>
 				</tr>
 				<tr>
 					<th>작성자</th>

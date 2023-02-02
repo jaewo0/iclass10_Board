@@ -21,5 +21,5 @@ public class Community {
 	private int readCount;
 	private Timestamp createdAt;
 	private String ip;
-	private int commentCount;
+	private String commentCount;
 }
