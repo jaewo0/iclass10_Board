@@ -9,12 +9,12 @@ import org.iclass.vo.CommunityComments;
 import mybatis.SqlSessionBean;
 
 public class CommunityDao {
-	private static final CommunityDao dao = new CommunityDao();
-	private CommunityDao() {	};
+	private static CommunityDao dao = new CommunityDao();
+	private CommunityDao() {}
 	public static CommunityDao getInstance() {
 		return dao;
 	}
-	
+
 	public long insert(Community vo) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
 		mapperSession.insert("community.insert",vo);
@@ -41,7 +41,7 @@ public class CommunityDao {
 
 	public Community selectByIdx(int idx) {
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		Community vo = mapperSession.selectOne("community.select",idx);
+		Community vo = mapperSession.selectOne("community.selectByIdx",idx);
 		mapperSession.close();
 		return vo;
 	}
@@ -92,7 +92,7 @@ public class CommunityDao {
 	//mref 메인글의 댓글목록 가져오기
 	public List<CommunityComments> comments(int mref){
 		SqlSession mapperSession = SqlSessionBean.getSession();
-		List<CommunityComments> commentList = mapperSession.selectList("community.comments");
+		List<CommunityComments> commentList = mapperSession.selectList("community.comments",mref);
 		mapperSession.close();
 		return commentList;
 	}

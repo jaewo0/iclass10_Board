@@ -1,6 +1,6 @@
 package org.iclass.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +14,11 @@ import lombok.ToString;
 @Builder
 @ToString
 public class CommunityComments {
-	private int idx;
+	private long idx;
 	private int mref;
 	private String writer;
 	private String content;
-	private Date createdAt;
+	private Timestamp createdAt;
 	private String ip;
 	private int heart;
 }
