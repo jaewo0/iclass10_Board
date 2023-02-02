@@ -14,8 +14,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class CommunityComments {
-	private long idx;
-	private int mref;
+	private int idx;
+	private long mref;
 	private String writer;
 	private String content;
 	private Timestamp createdAt;

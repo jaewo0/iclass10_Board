@@ -38,14 +38,14 @@
 			idx=#{idx}
  	</update>
  	
- 	<delete id="delete" parameterType="int">
+ 	<delete id="delete" parameterType="long">
  		DELETE FROM 
  			community 
  		WHERE 
  			idx=#{idx}
  	</delete>
  	
- 	<select id="selectByIdx" parameterType="int" resultType="org.iclass.vo.Community">
+ 	<select id="selectByIdx" parameterType="long" resultType="org.iclass.vo.Community">
  		SELECT * 
  		FROM 
  			community 
@@ -57,14 +57,14 @@
  		SELECT count(*) FROM community
  	</select>
  	
- 	<update id="setReadCount" parameterType="int">
+ 	<update id="setReadCount" parameterType="long">
  		UPDATE community 
 		SET 
 			READCOUNT = READCOUNT +1 
 		WHERE 
 			idx = #{idx}
  	</update>
- 	<select id="commentsCount" resultType="int">
+ 	<select id="commentsCount" resultType="long">
  		SELECT count(*) 
  		FROM communityComments 
  		WHERE 
@@ -72,7 +72,7 @@
  	</select>
  	
  	<!-- 메인글의 댓글 갯수 업데이트  -->
- 	<update id="setCommentCount" parameterType="int">
+ 	<update id="setCommentCount" parameterType="long">
  		UPDATE community 
 		SET COMMENTCOUNT = 
 			(SELECT count(*) 
@@ -86,7 +86,7 @@
  	</select>
  	
  	<!--  mref 메인글의 댓글목록 가져오기  -->
- 	<select id="comments" parameterType="int" resultType="org.iclass.vo.CommunityComments">
+ 	<select id="comments" parameterType="long" resultType="org.iclass.vo.CommunityComments">
  		SELECT * 
  		FROM communityComments 
  		WHERE 

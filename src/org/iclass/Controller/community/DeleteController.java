@@ -17,7 +17,7 @@ public class DeleteController implements Controller{
 		String idx = request.getParameter("idx");
 		
 		CommunityDao dao = CommunityDao.getInstance();
-		int result = dao.delete(Integer.parseInt(idx));
+		int result = dao.delete(Long.parseLong(idx));
 		if(result != 0) {
 			response.sendRedirect("list");
 		}else {

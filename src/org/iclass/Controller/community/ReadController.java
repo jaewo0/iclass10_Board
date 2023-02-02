@@ -19,10 +19,10 @@ public class ReadController implements Controller {
 		
 		//지정된 idx 메인글 읽기
 		String temp = request.getParameter("idx");
-		int idx = 0;
+		long idx = 0;
 		
 		try {
-			idx = Integer.parseInt(temp);
+			idx = Long.parseLong(temp);
 		} catch (NumberFormatException e) {
 			response.sendRedirect("list");
 		}

@@ -20,7 +20,7 @@ public class UpdateController implements Controller {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String ip = request.getRemoteAddr();
-		int idx = Integer.parseInt(request.getParameter("idx")); 
+		long idx = Long.parseLong(request.getParameter("idx")); 
 				
 		Community vo = Community.builder()
 								.title(title)

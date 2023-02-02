@@ -18,9 +18,9 @@ public class UpdateViewController implements Controller{
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		CommunityDao dao = CommunityDao.getInstance();
-		int idx = 0;
+		long idx = 0;
 		Community vo = null;
-		idx = Integer.parseInt(request.getParameter("idx"));
+		idx = Long.parseLong(request.getParameter("idx"));
 		
 		
 		vo = dao.selectByIdx(idx);
