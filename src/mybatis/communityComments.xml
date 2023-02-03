@@ -24,7 +24,7 @@
  	</delete>
  	
  	 	<select id="maxOf" resultType="int">
- 		SELECT max(idx) FROM communityComments 
+ 		SELECT max(idx) FROM communityComments order by mref desc
  	</select>
  	
 </mapper>  

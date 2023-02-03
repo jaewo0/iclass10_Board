@@ -31,9 +31,9 @@ public class FrontController extends HttpServlet{
 		
 		RequestKeyValue key = new RequestKeyValue(url, method);
 		Controller controller = RequestControllerMapping.getController(key);
-		logger.info(":::::::::::{}-{}::::::::::::",key,controller.getClass());
 		if(controller != null) {
 			controller.handle(request, response);
+			logger.info(":::::::::::{}-{}::::::::::::",key,controller.getClass());
 		}
 		
 	}

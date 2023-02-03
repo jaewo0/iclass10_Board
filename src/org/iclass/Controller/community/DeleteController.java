@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.iclass.Controller.Controller;
 import org.iclass.dao.CommunityDao;
 
-public class DeleteController implements Controller{
+public class DeleteController implements Controller {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String idx = request.getParameter("idx");
-		
+		// 글 삭제 구현해 보세요.
 		CommunityDao dao = CommunityDao.getInstance();
-		int result = dao.delete(Long.parseLong(idx));
-		if(result != 0) {
+		long idx = Long.parseLong(request.getParameter("idx"));
+		int result = dao.delete(idx);
+		if (result == 1) {
 			response.sendRedirect("list");
-		}else {
+		} else {
 			response.sendRedirect(request.getContextPath());
 		}
+
 	}
 
 }
