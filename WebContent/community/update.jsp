@@ -18,6 +18,7 @@
 		<hr style="color: white;">
 		<form name="frm1" method="post" action="update">
 			<input type="hidden" name="idx" value="${vo.idx }">
+			<input type ="hidden" name="page" value="${page }">
 			<table>
 				<tr>
 					<th>제목</th>
@@ -54,7 +55,7 @@
 					<td colspan="2" align="center">
 						<button type="submit">저장</button>
 						<button type="reset">다시쓰기</button>
-						<button type="button" onclick="location.href='list'">목록</button>
+						<button type="button" onclick="location.href='list?page=${page}'">목록</button>
 					</td>
 				</tr>
 			</table>

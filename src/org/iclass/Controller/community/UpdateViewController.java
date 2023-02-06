@@ -25,6 +25,9 @@ public class UpdateViewController implements Controller{
 		
 		vo = dao.selectByIdx(idx);
 		request.setAttribute("vo", vo);
+		
+		request.setAttribute("page", request.getParameter("page"));
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("update.jsp");
 		dispatcher.forward(request, response);
 	}

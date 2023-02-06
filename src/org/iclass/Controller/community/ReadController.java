@@ -38,6 +38,8 @@ public class ReadController implements Controller {
 		List<CommunityComments> cmtlist = dao.comments(idx);
 		request.setAttribute("cmtlist", cmtlist);
 		
+		//현재 페이지를 list.jsp에서 받아서 read.jsp로 전달
+		request.setAttribute("page", request.getParameter("page"));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("read.jsp");
 		dispatcher.forward(request, response);

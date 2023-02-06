@@ -37,7 +37,7 @@ public class UpdateController implements Controller {
 				
 		
 		if(result != 0) {
-			response.sendRedirect("list");
+			response.sendRedirect("read?idx="+idx+"&page="+request.getParameter("page"));
 		}else {
 			//메인으로 이동
 			response.sendRedirect(request.getContextPath());

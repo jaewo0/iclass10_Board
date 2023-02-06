@@ -32,6 +32,7 @@ DELETE FROM communityComments c WHERE idx = 2;
 SELECT * FROM communityComments c WHERE mref=3;   -- 메인 3번글의 댓글 목록(리스트)
 
 -- 게시판 글목록은 idx 의 내림차순 그리고, rownum 10개씩 조회
+-- rownum은 오라클의 컬럼(행번호를저장하는 메타데이터)
 SELECT * FROM 
 	(SELECT rownum r ,f.* from
 		(SELECT * FROM community  ORDER BY idx DESC) f)

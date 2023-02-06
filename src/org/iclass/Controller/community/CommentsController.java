@@ -49,6 +49,23 @@ public class CommentsController implements Controller {
 		dao.setCommentCount(mref);
 		response.sendRedirect(url);
 		
+		String page = request.getParameter("page");
+		//댓글 작성 추가
+		if(f.equals("1")) {
+			CommunityComments vo = CommunityComments.builder()
+									.mref(mref)
+									.writer(request.getParameter("writer"))
+									.content(request.getParameter("contetnt"))
+									.ip(request.getRemoteAddr())
+									.build();
+			if(dao.insert(vo)==1) url = "read?idx="+mref+"&page="+page;
+			else url = "list";
+		}else if(f.equals("2")) {
+			//댓글 작성
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			if(dao.delete(idx)==1) url="read?idx="+mref+"&page="+page;
+			else url = "list";
+		}
 	}
 	
 }

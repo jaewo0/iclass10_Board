@@ -11,6 +11,10 @@ import org.iclass.Controller.community.UpdateController;
 import org.iclass.Controller.community.UpdateViewController;
 import org.iclass.Controller.community.WriteController;
 import org.iclass.Controller.community.WriteViewController;
+import org.iclass.Controller.login.LoginActionController;
+import org.iclass.Controller.login.LoginViewController;
+import org.iclass.Controller.login.LogoutController;
+
 
 public class RequestControllerMapping {
 	private static final Map<RequestKeyValue, Controller> mapping = new HashMap<>();
@@ -34,9 +38,10 @@ public class RequestControllerMapping {
 		mapping.put(new RequestKeyValue("/member/modify","GET"), null);
 		mapping.put(new RequestKeyValue("/member/modify","POST"), null);
 		//로그인
-		mapping.put(new RequestKeyValue("/login","GET"), null);
-		mapping.put(new RequestKeyValue("/login","POST"), null);
-		mapping.put(new RequestKeyValue("/logout","GET"), null);
+		//로그인 기능
+		mapping.put(new RequestKeyValue("/login","GET"),new LoginViewController());
+		mapping.put(new RequestKeyValue("/login","POST"),new LoginActionController());
+		mapping.put(new RequestKeyValue("/logout","GET"),new LogoutController());
 		
 	
 	}
