@@ -19,7 +19,7 @@ public class CommentsController implements Controller {
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		request.setCharacterEncoding("UTF-8");
+	//	request.setCharacterEncoding("UTF-8");
 		CommunityCommentsDao dao = CommunityCommentsDao.getInstance();
 		String f = request.getParameter("f");
 		String url = null;

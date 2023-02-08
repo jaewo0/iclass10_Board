@@ -12,37 +12,43 @@ import org.iclass.Controller.Controller;
 import org.iclass.dao.CommunityDao;
 import org.iclass.vo.Community;
 import org.iclass.vo.CommunityComments;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // 요청 매핑 : mapping.put(new RequestKeyValue("/community/read", "GET"), new ReadController() );
 public class ReadController implements Controller {
+	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//지정된 idx 메인글 읽기
-		String temp = request.getParameter("idx");			//메인글 글번호 파라미터로 받기
-		long idx=0;
+		// 지정된 idx 메인글 읽기
+		String temp = request.getParameter("idx"); // 메인글 글번호 파라미터로 받기
+		long idx = 0;
+		
 		try {
 			idx = Long.parseLong(temp);
-		}catch (NumberFormatException e) {
+
+			CommunityDao dao = CommunityDao.getInstance();
+			// 조회수 증가 : 실행 위치는?
+			dao.setReadCount(idx);
+
+			Community vo = dao.selectByIdx(idx);
+			if (vo == null) throw new RuntimeException();
+			logger.debug(":::::: vo-{}::::::", vo);
+			request.setAttribute("vo", vo);
+
+			// idx 메인글의 댓글리스트를 애트리뷰트에 저장하기 해보세요.
+			List<CommunityComments> cmtlist = dao.comments(idx);
+			request.setAttribute("cmtlist", cmtlist);
+
+			// 현재 페이지를 list.jsp에서 받아서 read.jsp로 전달
+			request.setAttribute("page", request.getParameter("page"));
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("read.jsp");
+			dispatcher.forward(request, response);
+		} catch (NumberFormatException e) {
 			response.sendRedirect("list");
 		}
-		
-		CommunityDao dao = CommunityDao.getInstance();
-		//조회수 증가 : 실행 위치는?
-		dao.setReadCount(idx);
-		
-		Community vo = dao.selectByIdx(idx);
-		request.setAttribute("vo", vo);
-		
-		//idx 메인글의 댓글리스트를 애트리뷰트에 저장하기 해보세요.
-		List<CommunityComments> cmtlist = dao.comments(idx);
-		request.setAttribute("cmtlist", cmtlist);
-		
-		//현재 페이지를 list.jsp에서 받아서 read.jsp로 전달
-		request.setAttribute("page", request.getParameter("page"));
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("read.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }

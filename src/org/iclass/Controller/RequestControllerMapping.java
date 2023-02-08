@@ -3,6 +3,9 @@ package org.iclass.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.iclass.Controller.book.NewBookListController;
+import org.iclass.Controller.book.NewBookSaveController;
+import org.iclass.Controller.book.NewFormController;
 import org.iclass.Controller.community.CommentsController;
 import org.iclass.Controller.community.DeleteController;
 import org.iclass.Controller.community.ListController;
@@ -42,7 +45,10 @@ public class RequestControllerMapping {
 		mapping.put(new RequestKeyValue("/login","GET"),new LoginViewController());
 		mapping.put(new RequestKeyValue("/login","POST"),new LoginActionController());
 		mapping.put(new RequestKeyValue("/logout","GET"),new LogoutController());
-		
+		//새로나온 책(파일업로드)
+		mapping.put(new RequestKeyValue("/book/new","GET"), new NewFormController());
+		mapping.put(new RequestKeyValue("/book/new","POST"), new NewBookSaveController());
+		mapping.put(new RequestKeyValue("/book/list","GET"), new NewBookListController());
 	
 	}
 
